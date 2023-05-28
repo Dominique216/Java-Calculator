@@ -2,12 +2,24 @@ package src;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CalcFrame extends JFrame {
+
+    int num1;
+    int num2;
+    int total;
+    String operand;
     CalcFrame() {
         JFrame frame = new JFrame("Calculator");
 
         JTextArea screen = new JTextArea(6, 4);
+        screen.setFont(new Font("Century Gothic", Font.PLAIN, 20));
+        screen.setBackground(Color.BLACK);
+        screen.setForeground(Color.white);
 
         JPanel panel = new JPanel();
 
@@ -30,6 +42,146 @@ public class CalcFrame extends JFrame {
         JButton times = new JButton("*");
         JButton divide = new JButton("/");
         JButton equals = new JButton("=");
+
+        zero.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.append("0");
+                super.mouseClicked(e);
+            }
+
+        });
+        one.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.append("1");
+                super.mouseClicked(e);
+            }
+
+        });
+        two.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.append("2");
+                super.mouseClicked(e);
+            }
+
+        });
+        three.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.append("3");
+                super.mouseClicked(e);
+            }
+
+        });
+        four.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.append("4");
+                super.mouseClicked(e);
+            }
+
+        });
+        five.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.append("5");
+                super.mouseClicked(e);
+            }
+
+        });
+        six.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.append("6");
+                super.mouseClicked(e);
+            }
+
+        });
+        seven.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.append("7");
+                super.mouseClicked(e);
+            }
+
+        });
+        eight.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.append("8");
+                super.mouseClicked(e);
+            }
+
+        });
+        nine.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.append("9");
+                super.mouseClicked(e);
+            }
+
+        });
+        ac.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                screen.setText("");
+                super.mouseClicked(e);
+            }
+        });
+
+        plus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(screen.getText());
+                num1 = Integer.parseInt(screen.getText());
+                operand = "+";
+                screen.setText("");
+            }
+        });
+        minus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(screen.getText());
+                num1 = Integer.parseInt(screen.getText());
+                operand = "-";
+                screen.setText("");
+            }
+        });
+        times.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(screen.getText());
+                num1 = Integer.parseInt(screen.getText());
+                operand = "*";
+                screen.setText("");
+            }
+        });
+        divide.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(screen.getText());
+                num1 = Integer.parseInt(screen.getText());
+                operand = "/";
+                screen.setText("");
+            }
+        });
+
+        equals.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(screen.getText());
+                num2 = Integer.parseInt(screen.getText());
+                switch (operand) {
+                    case "+" -> total = num1 + num2;
+                    case "-" -> total = num1 - num2;
+                    case "*" -> total = num1 * num2;
+                    case "/" -> total = num1 / num2;
+                }
+                screen.setText(String.valueOf(total));
+            }
+        });
 
 
         frame.add(screen, BorderLayout.NORTH);
