@@ -8,14 +8,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class CalcFrame extends JFrame {
-
-    int num1;
-    int num2;
+    int num;
     int total;
     String operand;
     CalcFrame() {
         JFrame frame = new JFrame("Calculator");
-
         JTextArea screen = new JTextArea(6, 4);
         screen.setFont(new Font("Century Gothic", Font.PLAIN, 20));
         screen.setBackground(Color.BLACK);
@@ -131,11 +128,13 @@ public class CalcFrame extends JFrame {
             }
         });
 
+
         plus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(screen.getText());
-                num1 = Integer.parseInt(screen.getText());
+                num = Integer.parseInt(screen.getText());
+                total += num;
                 operand = "+";
                 screen.setText("");
             }
@@ -144,7 +143,8 @@ public class CalcFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(screen.getText());
-                num1 = Integer.parseInt(screen.getText());
+                num = Integer.parseInt(screen.getText());
+                total -= num;
                 operand = "-";
                 screen.setText("");
             }
@@ -153,7 +153,8 @@ public class CalcFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(screen.getText());
-                num1 = Integer.parseInt(screen.getText());
+                num = Integer.parseInt(screen.getText());
+                total *= num;
                 operand = "*";
                 screen.setText("");
             }
@@ -162,7 +163,8 @@ public class CalcFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(screen.getText());
-                num1 = Integer.parseInt(screen.getText());
+                num = Integer.parseInt(screen.getText());
+                total /= num;
                 operand = "/";
                 screen.setText("");
             }
@@ -172,14 +174,15 @@ public class CalcFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(screen.getText());
-                num2 = Integer.parseInt(screen.getText());
+                num = Integer.parseInt(screen.getText());
                 switch (operand) {
-                    case "+" -> total = num1 + num2;
-                    case "-" -> total = num1 - num2;
-                    case "*" -> total = num1 * num2;
-                    case "/" -> total = num1 / num2;
+                    case "+" -> total += num;
+                    case "-" -> total -= num;
+                    case "*" -> total *= num;
+                    case "/" -> total /= num;
                 }
                 screen.setText(String.valueOf(total));
+                total = 0;
             }
         });
 
